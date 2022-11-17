@@ -33,12 +33,6 @@ It contains all the validations of the backend where they are broken down accord
 Files include;
 Users Validation: All validations needed in the users controller.
 
-## Validations Folder
-
-It contains all the validations of the backend where they are broken down according to the service being rendered to the users of Degallery.
-Files include;
-Users Validation: All validations needed in the users controller.
-
 ## Services Folder
 
 It contains all third party services to the backend.
