@@ -7,13 +7,11 @@ import {
 	toggleDisplayModal,
 	toggleShowImageDetails,
 } from "../../../logic/ReduxStore/feature/GlobalStateSlice";
-import Gallery1 from "../../Assets/LandingPageImages/family-g73e47d82d_1280.jpg";
-import Gallery2 from "../../Assets/LandingPageImages/best-friends-g203e70ced_1280.jpg";
 import Gallery3 from "../../Assets/LandingPageImages/children-g688789163_1280.jpg";
 import DashboardLayout from "../../Components/Layouts/DashboardLayout";
 import ModalComponent from "../../Components/PagesComponents/ModalComponent";
 import { motion } from "framer-motion";
-import { MdClose, MdEdit } from "react-icons/md";
+import { MdClose, MdDelete, MdEdit } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 
 interface HomeProps {}
@@ -138,13 +136,23 @@ const Home: React.FC<HomeProps> = ({}) => {
 												setId(item.id);
 											}}
 										>
-											<div
-												className="absolute top-2 right-2 w-8 h-8 bg-white shadow-sm rounded-full flex flex-col items-center justify-center"
-												onClick={() => {
-													dispatch(toggleDisplayModal(true));
-												}}
-											>
-												<MdEdit size={24} />
+											<div>
+												<div
+													className="absolute top-2 right-12 w-8 h-8 bg-white shadow-sm rounded-full flex flex-col items-center justify-center"
+													onClick={() => {
+														dispatch(toggleDisplayModal(true));
+													}}
+												>
+													<MdEdit size={24} />
+												</div>
+												<div
+													className="absolute top-2 right-2 w-8 h-8 bg-white shadow-sm rounded-full flex flex-col items-center justify-center"
+													onClick={() => {
+														dispatch(toggleDisplayModal(true));
+													}}
+												>
+													<MdDelete size={24} />
+												</div>
 											</div>
 											<motion.div className="absolute bottom-0 shadow-sm w-full bg-gradient-to-t from-black h-28 flex flex-row items-center">
 												<div>
@@ -153,7 +161,6 @@ const Home: React.FC<HomeProps> = ({}) => {
 													</h3>
 												</div>
 											</motion.div>
-											<div className="w-full h-20 bg-secondary"></div>
 										</div>
 									) : null}
 								</div>
