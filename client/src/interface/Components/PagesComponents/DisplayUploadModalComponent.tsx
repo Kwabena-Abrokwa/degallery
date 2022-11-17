@@ -64,6 +64,7 @@ const DisplayUploadModalComponent: React.FC<
 	const handleImageUpload = () => {
 		dispatch(uploadNewImageMethod(imageData)).then(async () => {
 			dispatch(fetchAllImagesMethod());
+			dispatch(toggleDisplayUploadModal(false));
 		});
 	};
 
