@@ -22,13 +22,15 @@ export const getAllImage = async (req: Request, res: Response) => {
 
 export const uploadNewImage = async (req: Request, res: Response) => {
 	try {
+		const imageName = req.body.imageName;
+		const imageContent = req.body.imageContent;
 		const { error } = uploadImageValidation(req.body);
 		if (error)
 			return res.status(401).json({ message: error.details[0].message });
 
 		const file = req.file;
 
-		let imageUploadedToAWS;
+		let imageUploadedToAWS = "";
 
 		if (file) {
 			imageUploadedToAWS = await s3BucketUploads(file);
@@ -38,9 +40,9 @@ export const uploadNewImage = async (req: Request, res: Response) => {
 
 		const uploadImage = new ImageModel({
 			imageId,
-			imageName: req.body.imageName,
-			imageContent: req.body.imageContent,
-			image: imageUploadedToAWS || [],
+			imageName,
+			image: imageUploadedToAWS,
+			imageContent,
 		});
 
 		const save = await uploadImage.save();

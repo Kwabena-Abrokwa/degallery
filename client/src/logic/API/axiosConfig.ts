@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const API_URLS = {
-	image_URL: "",
-	users_Local_API_URL: "http://localhost:8085/api/users",
-	users_Live_API_URL: "",
+	image_URL: "https://kwabena-abrokwa.s3.af-south-1.amazonaws.com",
+	users_Local_API_URL: "http://localhost:8085/api/users/",
+	users_Live_API_URL: "https://degallery.azurewebsites.net/",
 };
 
-export default axios.defaults.baseURL = API_URLS.users_Local_API_URL;
+export default axios.defaults.baseURL = API_URLS.users_Live_API_URL;

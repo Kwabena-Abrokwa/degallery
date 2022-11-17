@@ -8,6 +8,8 @@ import ModalComponent from "../../Components/PagesComponents/ModalComponent";
 import { MdClose } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 import CustomInput from "../Customs/CustomInput";
+import { uploadNewImageMethod } from "../../../logic/ReduxStore/feature/ImageFeature/UploadNewImageSlice";
+import CustomButtonSpinner from "../Customs/CustomButtonSpinner";
 
 interface DisplayUploadModalComponentProps {}
 
@@ -27,6 +29,7 @@ const DisplayUploadModalComponent: React.FC<
 	});
 	const [images, setimages] = useState("");
 	const globalStates = useAppSelector((state) => state.getGlobalStates);
+	const uploadImageState = useAppSelector((state) => state.uploadImage);
 
 	const dispatch = useAppDispatch();
 
@@ -51,6 +54,14 @@ const DisplayUploadModalComponent: React.FC<
 			...imageData,
 			[event.target.name]: event.target.value,
 		});
+
+		console.log("====================================");
+		console.log(imageData);
+		console.log("====================================");
+	};
+
+	const handleImageUpload = () => {
+		dispatch(uploadNewImageMethod(imageData));
 	};
 
 	return (
@@ -91,7 +102,7 @@ const DisplayUploadModalComponent: React.FC<
 									onChange={handleChange}
 								/>
 							</div>
-							<div className="w-full relative rounded-md border-gray-400 h-40 cursor-pointer bg-[#F6F6F6] mt-2">
+							<div className="w-full relative rounded-md border-gray-400 h-52 cursor-pointer bg-[#F6F6F6] mt-2">
 								{images.length < 1 ? (
 									<div className="py-6 absolute left-[30%] lg:left-[35%] cursor-pointer z-2">
 										<div>
@@ -110,7 +121,7 @@ const DisplayUploadModalComponent: React.FC<
 										<img
 											src={images}
 											alt="Images"
-											className="w-full h-40"
+											className="w-full h-52"
 										/>{" "}
 									</div>
 								)}
@@ -123,8 +134,19 @@ const DisplayUploadModalComponent: React.FC<
 									accept="image/*"
 								/>
 							</div>
-							<button className="w-full shadow-md border h-[50px] my-10 bg-secondary text-white">
-								Upload photo
+							{uploadImageState.message && (
+								<h4>{uploadImageState.message}</h4>
+							)}
+							<button
+								className="w-full shadow-md border h-[50px] my-10 bg-secondary text-white"
+								disabled={uploadImageState.loading}
+								onClick={handleImageUpload}
+							>
+								{uploadImageState.loading ? (
+									<CustomButtonSpinner />
+								) : (
+									"Upload photo"
+								)}
 							</button>
 						</form>
 					</div>

@@ -7,22 +7,18 @@ type ImageDetails = {
 	imageDate: ReactNode;
 	imageContent: string;
 	imageId: number;
+	image: string;
 };
 
 type InitialState = {
 	loading: boolean;
-	ImageData: ImageDetails;
+	ImageData: ImageDetails[];
 	error: string;
 };
 
 const initialState: InitialState = {
 	loading: false,
-	ImageData: {
-		imageName: "",
-		imageDate: "",
-		imageContent: "",
-		imageId: 0,
-	},
+	ImageData: [],
 	error: "",
 };
 

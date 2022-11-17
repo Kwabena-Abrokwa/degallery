@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+type ImageDetails = {
+	imageName: string;
+	imageContent: string;
+	image: string;
+};
+
 type InitialState = {
 	loading: boolean;
 	message: string;
@@ -15,10 +21,16 @@ const initialState: InitialState = {
 
 export const uploadNewImageMethod = createAsyncThunk(
 	"uploadNewImage/uploadNewImageMethod",
-	async () => {
-		return await axios.get("uploadNewImage").then(({ data }) => {
-			return data;
-		});
+	async (datas: ImageDetails) => {
+		return await axios
+			.post("uploadNewImage", datas, {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			})
+			.then(({ data }) => {
+				return data;
+			});
 	}
 );
 

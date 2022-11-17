@@ -32,7 +32,7 @@ const upload = multer({
 
 router.get("/getAllImages", getAllImage);
 
-router.post("/uploadNewImage", upload.array("img"), uploadNewImage);
+router.post("/uploadNewImage", upload.single("image"), uploadNewImage);
 
 router.delete("deleteImage/:imageId", deletImage);
 

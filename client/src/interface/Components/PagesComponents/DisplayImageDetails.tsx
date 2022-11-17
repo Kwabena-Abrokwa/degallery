@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
 	useAppDispatch,
 	useAppSelector,
 } from "../../../logic/ReduxStore/app/hooks";
-import { toggleShowImageDetails } from "../../../logic/ReduxStore/feature/GlobalStates/GlobalStateSlice";
-import Gallery2 from "../../Assets/LandingPageImages/children-g688789163_1280.jpg";
+import {
+	toggleDisplayCrop,
+	toggleShowImageDetails,
+} from "../../../logic/ReduxStore/feature/GlobalStates/GlobalStateSlice";
 import ModalComponent from "../../Components/PagesComponents/ModalComponent";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdCrop } from "react-icons/md";
+import { API_URLS } from "../../../logic/API/axiosConfig";
 
 interface DisplayImageDetailsProps {}
 
@@ -17,28 +20,48 @@ const DisplayImageDetails: React.FC<DisplayImageDetailsProps> = ({}) => {
 
 	return (
 		<>
-			{globalStates.showImageDetails && (
+			{globalStates.showImageDetails.image && (
 				<ModalComponent>
-					<div className="w-[60%] py-10 mx-auto my-4 bg-white overflow-y-scroll relative rounded-md">
+					<div className="w-[60%] pb-10 mx-auto my-4 bg-white overflow-y-scroll relative rounded-md">
 						<div
 							className={
-								"absolute right-2 top-2 cursor-pointer bg-white rounded-full"
+								"absolute right-14 top-2 shadow-md cursor-pointer p-1 bg-white rounded-full"
+							}
+							onClick={() => {
+								dispatch(toggleDisplayCrop(true));
+							}}
+						>
+							<MdCrop size={28} />
+						</div>
+						<div
+							className={
+								"absolute right-2 top-2 shadow-md cursor-pointer p-1 bg-white rounded-full"
 							}
 							onClick={() => {
 								dispatch(toggleShowImageDetails(false));
 							}}
 						>
-							<MdClose size={32} />
+							<MdClose size={28} />
 						</div>
-						<img src={Gallery2} className="w-full" />
+						<img
+							src={`${API_URLS.image_URL}/${
+								globalStates.showImageDetails.image
+							}?timestamp=${new Date()}`}
+							className="w-full"
+							crossOrigin={"anonymous"}
+						/>
 						<div className="w-11/12 mx-auto max-h-[100px]">
 							<div className="flex justify-between items-center py-5">
 								<h3 className="text-3xl">
 									Name: {globalStates.showImageDetails.imageName}
 								</h3>
-								<h3 className="text-3xl">28th October, 2022</h3>
+								<h3 className="text-3xl">
+									{globalStates.showImageDetails.createdAt}
+								</h3>
 							</div>
-							<p className="text-xl">Today I had fun with Mariam</p>
+							<p className="text-xl">
+								{globalStates.showImageDetails.imageContent}
+							</p>
 						</div>
 					</div>
 				</ModalComponent>

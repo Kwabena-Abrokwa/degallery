@@ -33,16 +33,14 @@ const ImageCardsComponents: React.FC<ImageCardsComponentsProps> = ({
 			onMouseOver={handleShowImageControl}
 			onClick={handleShowImageDetails}
 		>
-			<img src={image} className={"w-full h-80"} />
+			<img
+				src={`${image}?timestamp=${new Date()}`}
+				className={"w-full h-80"}
+				crossOrigin={"anonymous"}
+			/>
 			{globalStates.showImageControls && currentImageIndex === imageId ? (
 				<div onMouseOut={handleHideImageControl}>
 					<div>
-						<div
-							className="absolute top-2 right-12 w-8 h-8 bg-white shadow-sm rounded-full flex flex-col items-center justify-center"
-							onClick={handleShowImageControl}
-						>
-							<MdEdit size={24} />
-						</div>
 						<div
 							className="absolute top-2 right-2 w-8 h-8 bg-white shadow-sm rounded-full flex flex-col items-center justify-center"
 							onClick={handleShowImageControl}

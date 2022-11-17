@@ -3,16 +3,18 @@ import { ReactNode } from "react";
 
 type ImageDetails = {
 	imageName: string;
-	imageDate: ReactNode;
+	createdAt: ReactNode;
 	imageContent: string;
 	imageId: number;
+	image: string;
 };
 
 type InitialState = {
 	windowLoader: boolean;
 	displayUploadModal: boolean;
 	showImageDetails: ImageDetails;
-	showImageControls: false;
+	showImageControls: boolean;
+	displayCrop: boolean;
 };
 
 const initialState: InitialState = {
@@ -20,11 +22,13 @@ const initialState: InitialState = {
 	displayUploadModal: false,
 	showImageDetails: {
 		imageName: "",
-		imageDate: "",
+		createdAt: "",
 		imageContent: "",
 		imageId: 0,
+		image: "",
 	},
 	showImageControls: false,
+	displayCrop: false,
 };
 
 const GlobalStateSlice = createSlice({
@@ -43,6 +47,9 @@ const GlobalStateSlice = createSlice({
 		toggleShowControl: (state, action) => {
 			state.showImageControls = action.payload;
 		},
+		toggleDisplayCrop: (state, action) => {
+			state.displayCrop = action.payload;
+		},
 	},
 });
 
@@ -51,5 +58,6 @@ export const {
 	toggleDisplayUploadModal,
 	toggleShowImageDetails,
 	toggleShowControl,
+	toggleDisplayCrop,
 } = GlobalStateSlice.actions;
 export default GlobalStateSlice.reducer;

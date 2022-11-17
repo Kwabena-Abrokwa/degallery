@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import App from "./App";
+import "./logic/API/axiosConfig";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import store from "./logic/ReduxStore/app/store";
