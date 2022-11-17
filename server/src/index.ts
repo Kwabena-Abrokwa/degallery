@@ -8,6 +8,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import multer from "multer";
 import mongoose from "mongoose";
+import UsersRoute from "./api/version1/Routes/UsersRoute";
 
 //initiating express instance
 const app = express();
@@ -60,17 +61,21 @@ app.use(
 );
 
 //api routes to be used
-app.use("/api/users");
+app.use("/api/users", UsersRoute);
 
 //env variables
 const PORT = 8085 || (process.env.PORT as string);
-export const DATABASE_URI_LIVE: string = process.env
-	.DATABASE_URI_LIVE as string;
+export const DATABASE_URI: string = process.env.DATABASE_URI as string;
+export const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID as string;
+export const AWS_SECRET_ACCESS_KEY = process.env
+	.AWS_SECRET_ACCESS_KEY as string;
+export const AWS_REGION = process.env.AWS_REGION as string;
+export const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME as string;
 
 //connect/listen to available port number and connect to MongoDb data
 app.listen(PORT, async () => {
 	await mongoose
-		.connect(DATABASE_URI_LIVE)
+		.connect(DATABASE_URI)
 		.then(() => {
 			console.log(
 				`Server running on Port ${PORT} Database connected successfully`

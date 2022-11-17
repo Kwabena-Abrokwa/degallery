@@ -21,7 +21,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 					<p>{errorMessage}</p>
 				</div>
 			)}
-			<div className="w-full px-10 overflow-auto h-screen">
+			<div className="w-11/12 mx-auto overflow-auto h-screen">
 				<NavigationBar
 					buttonTitle={buttonTitle}
 					handleClick={handleClick}

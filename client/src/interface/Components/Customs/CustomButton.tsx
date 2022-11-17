@@ -12,7 +12,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 	return (
 		<button
 			onClick={handleClick}
-			className="bg-primary px-8 text-white py-3 rounded-md shadow flex items-center"
+			className="bg-primary lg:px-8 text-white lg:py-3 rounded-md shadow flex items-center"
 		>
 			{children}
 		</button>

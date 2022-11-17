@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import GlobalStateSlice from "../feature/GlobalStateSlice";
+import GlobalStateSlice from "../feature/GlobalStates/GlobalStateSlice";
+import GetAllImagesUploadedSlices from "../feature/ImageFeature/GetAllImagesUploadedSlices";
 
 const store = configureStore({
-	reducer: { getGlobalStates: GlobalStateSlice,  },
+	reducer: {
+		getGlobalStates: GlobalStateSlice,
+		getAllImages: GetAllImagesUploadedSlices,
+	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({ serializableCheck: false }),
 });

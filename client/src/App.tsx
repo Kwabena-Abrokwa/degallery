@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import LandingPages from "./interface/Pages/Guests/LandingPages";
 import { useAppDispatch, useAppSelector } from "./logic/ReduxStore/app/hooks";
-import { toggleWindowLoader } from "./logic/ReduxStore/feature/GlobalStateSlice";
+import { toggleWindowLoader } from "./logic/ReduxStore/feature/GlobalStates/GlobalStateSlice";
 import Home from "./interface/Pages/Dashboard/Home";
 
 interface AppProps {}

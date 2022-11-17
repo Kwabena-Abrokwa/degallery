@@ -13,10 +13,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 	handleClick,
 }) => {
 	return (
-		<nav className="w-full flex justify-between items-center py-6">
-			<div className="w-1/2" />
+		<nav className="w-full lg:flex justify-between items-center py-6">
+			<div className="lg:w-1/2" />
 
-			<div className="flex w-1/2">
+			<div className="flex lg:w-1/2">
 				<div className="flex justify-between items-center">
 					<img
 						src={profile}
