@@ -10,6 +10,7 @@ import { FaUpload } from "react-icons/fa";
 import CustomInput from "../Customs/CustomInput";
 import { uploadNewImageMethod } from "../../../logic/ReduxStore/feature/ImageFeature/UploadNewImageSlice";
 import CustomButtonSpinner from "../Customs/CustomButtonSpinner";
+import { fetchAllImagesMethod } from "../../../logic/ReduxStore/feature/ImageFeature/GetAllImagesUploadedSlices";
 
 interface DisplayUploadModalComponentProps {}
 
@@ -61,7 +62,9 @@ const DisplayUploadModalComponent: React.FC<
 	};
 
 	const handleImageUpload = () => {
-		dispatch(uploadNewImageMethod(imageData));
+		dispatch(uploadNewImageMethod(imageData)).then(async () => {
+			dispatch(fetchAllImagesMethod());
+		});
 	};
 
 	return (
