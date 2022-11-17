@@ -60,11 +60,15 @@ app.use(
 	}
 );
 
+app.get("/", (req: Request, res: Response) => {
+	res.send("Hi");
+});
+
 //api routes to be used
 app.use("/api/users", UsersRoute);
 
 //env variables
-const PORT = 8085 || (process.env.PORT as string);
+const PORT = (process.env.PORT as string) || 8085;
 export const DATABASE_URI: string = process.env.DATABASE_URI as string;
 export const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID as string;
 export const AWS_SECRET_ACCESS_KEY = process.env
