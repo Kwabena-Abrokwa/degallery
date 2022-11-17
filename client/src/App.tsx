@@ -8,14 +8,10 @@ interface AppProps {}
 
 const App: React.FC<AppProps> = ({}) => {
 	return (
-		<>
-			(
-			<Routes>
-				<Route path="/" element={<LandingPages />} />
-				<Route path="/dashboard" element={<Home />} />
-			</Routes>
-			)
-		</>
+		<Routes>
+			<Route path="/" element={<LandingPages />} />
+			<Route path="/dashboard" element={<Home />} />
+		</Routes>
 	);
 };
 
