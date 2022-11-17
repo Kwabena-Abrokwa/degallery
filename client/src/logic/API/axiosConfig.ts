@@ -6,4 +6,4 @@ export const API_URLS = {
 	users_Live_API_URL: "https://degallery.azurewebsites.net/api/users/",
 };
 
-export default axios.defaults.baseURL = API_URLS.users_Local_API_URL;
+export default axios.defaults.baseURL = API_URLS.users_Live_API_URL;
