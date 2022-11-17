@@ -7,6 +7,9 @@ interface CustomInputProps {
 	handleInputChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
 	styles?: React.CSSProperties | undefined;
 }
+{
+	/* {A reuseable input component} */
+}
 
 const CustomInput: React.FC<CustomInputProps> = ({
 	inputName,

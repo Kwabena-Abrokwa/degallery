@@ -37,20 +37,30 @@ const Home: React.FC<HomeProps> = ({}) => {
 				dispatch(toggleDisplayUploadModal(true));
 			}}
 		>
+			{/* {This  dashboardlayout is the layout containing the nav and how all other components should display} */}
 			<>
+				{/* {This component displays the uplaod modal for users to upload images} */}
 				<DisplayUploadModalComponent />
 
+				{/* {This component displays the selected images by the users} */}
 				<DisplayImageDetails />
 
+				{/* {This component displays the uplaod modal for users to crop, rotate and zoom in on images} */}
 				<CropImage />
 
+				{/* {This component is the gallery card component} */}
 				<section className="pb-20">
 					<Link to={"/"}>
 						<h3 className="text-5xl py-10">De Gallery</h3>
 					</Link>
 					<div className="w-full">
 						{getAllImages.loading ? (
-							<div>loading</div>
+							<div className="w-11/12 mx-auto">
+								{" "}
+								<p className="text-center text-3xl mt-20">
+									Loading... please wait
+								</p>{" "}
+							</div>
 						) : getAllImages.ImageData.length < 1 ? (
 							<div className="w-full">
 								<h2 className="text-6xl text-center">

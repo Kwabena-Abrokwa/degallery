@@ -22,7 +22,8 @@ const DisplayImageDetails: React.FC<DisplayImageDetailsProps> = ({}) => {
 		<>
 			{globalStates.showImageDetails.image && (
 				<ModalComponent>
-					<div className="w-[60%] pb-10 mx-auto my-4 bg-white overflow-y-scroll relative rounded-md">
+					{/* {This component displays the selected images by the users} */}
+					<div className="w-11/12 lg:w-[60%] pb-10 mx-auto my-4 bg-white overflow-y-scroll relative rounded-md">
 						<div
 							className={
 								"absolute right-14 top-2 shadow-md cursor-pointer p-1 bg-white rounded-full"
@@ -50,12 +51,12 @@ const DisplayImageDetails: React.FC<DisplayImageDetailsProps> = ({}) => {
 							className="w-full max-h-[600px]"
 							crossOrigin={"anonymous"}
 						/>
-						<div className="w-11/12 mx-auto max-h-[100px]">
-							<div className="flex justify-between items-center py-5">
-								<h3 className="text-3xl">
+						<div className="px-4 lg:w-11/12 mx-auto max-h-[100px]">
+							<div className="flg:lex justify-between items-center py-5">
+								<h3 className="text-xl lg:text-3xl">
 									Name: {globalStates.showImageDetails.imageName}
 								</h3>
-								<h3 className="text-3xl">
+								<h3 className="text-xl lg:text-3xl">
 									{globalStates.showImageDetails.createdAt}
 								</h3>
 							</div>

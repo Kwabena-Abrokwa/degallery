@@ -16,6 +16,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 }) => {
 	return (
 		<main className="bg-[#F3F4FB] flex justify-center items-start relative">
+			{/* {This  dashboardlayout is the layout containing the nav and how all other components should display} */}
 			{errorMessage && (
 				<div className="absolute right-5 bottom-5 px-6 bg-[red] py-2 rounded-md shadow-md text-white">
 					<p>{errorMessage}</p>

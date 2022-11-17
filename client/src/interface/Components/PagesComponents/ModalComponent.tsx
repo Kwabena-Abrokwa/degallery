@@ -21,6 +21,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({ children }) => {
 			}
 			variants={variants}
 		>
+			{/* {This is a reusable and animated model component} */}
 			{children}
 		</motion.div>
 	);

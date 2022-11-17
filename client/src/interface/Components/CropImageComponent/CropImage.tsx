@@ -53,6 +53,7 @@ const CropImage: React.FC<CropImageProps> = ({}) => {
 
 	return globalStates.displayCrop ? (
 		<ModalComponent>
+			{/* {This component displays the uplaod modal for users to crop, rotate and zoom in on images} */}
 			<>
 				<div className="w-5/6 bg-white h-4/6 my-20 relative">
 					<Cropper

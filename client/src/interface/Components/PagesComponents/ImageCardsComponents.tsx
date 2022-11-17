@@ -29,13 +29,14 @@ const ImageCardsComponents: React.FC<ImageCardsComponentsProps> = ({
 
 	return (
 		<div
-			className="w-full h-80 hover:shadow-md border cursor-pointer relative"
+			className="w-full h-96 hover:shadow-md border cursor-pointer relative lg:mb-0 mb-10"
 			onMouseOver={handleShowImageControl}
 			onClick={handleShowImageDetails}
 		>
+			{/* {This component displays the selected images by the users} */}
 			<img
 				src={`${image}?timestamp=${new Date()}`}
-				className={"w-full h-80"}
+				className={"w-full h-96 "}
 				crossOrigin={"anonymous"}
 			/>
 			{globalStates.showImageControls && currentImageIndex === imageId ? (

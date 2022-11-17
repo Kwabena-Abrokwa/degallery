@@ -72,7 +72,8 @@ const DisplayUploadModalComponent: React.FC<
 		<>
 			{globalStates.displayUploadModal ? (
 				<ModalComponent>
-					<div className="w-[35%] mx-auto my-10 bg-white overflow-y-scroll relative rounded-md">
+				{/* {This component displays the uplaod modal for users to upload images} */}
+					<div className="w-11/12 lg:w-[35%] mx-auto my-10 bg-white overflow-y-scroll relative rounded-md">
 						<div
 							className={"absolute right-2 top-2 cursor-pointer"}
 							onClick={() => {
