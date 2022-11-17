@@ -1,11 +1,13 @@
-#Degallery Frontend
+# Degallery Frontend
 
-##The Folder Structure of Degallery Frontend
+## The Folder Structure of Degallery Frontend
+
 Starting from the SRC folder, the structure is divided into 2
 Logic Folder
 Interface Folder
 
-##Logic Folder  
+## Logic Folder
+
 It contains all the API Logics and computations that has to do with the application.
 Subfolders include;
 ReduxStore: Contains all the activities that has to do with redux and application state management.
@@ -17,7 +19,8 @@ Features Folder: This is where all the logics go according to pages and actions 
 Interceptors
 It only contains Axios configuration file
 
-##Interface Folder
+## Interface Folder
+
 It contains all the UI Pages and its components.
 Subfolders include;
 Screens Folder: Where all screens UI are stored. Inside the Screens, we have Auth Folder for only Authenticated Screen and Guest Folder for only Guest screens.

@@ -3,6 +3,7 @@ import ImageModel from "../Model/ImageModel";
 import { s3BucketUploads } from "../Services/AWSS3Services";
 import { uploadImageValidation } from "../Validations/uploadImageValidation";
 
+//funtion to get all images
 export const getAllImage = async (req: Request, res: Response) => {
 	try {
 		const imageData = await ImageModel.find();
@@ -20,6 +21,7 @@ export const getAllImage = async (req: Request, res: Response) => {
 	}
 };
 
+//funtion to upload all images
 export const uploadNewImage = async (req: Request, res: Response) => {
 	try {
 		const imageName = req.body.imageName;
@@ -62,6 +64,7 @@ export const uploadNewImage = async (req: Request, res: Response) => {
 	}
 };
 
+//funtion to update all images
 export const updateImageInfo = async (req: Request, res: Response) => {
 	try {
 		const imageId = req.params.id;
@@ -105,6 +108,7 @@ export const updateImageInfo = async (req: Request, res: Response) => {
 	}
 };
 
+//funtion to delete all images
 export const deletImage = async (req: Request, res: Response) => {
 	try {
 		const imageId = req.params.imageId;

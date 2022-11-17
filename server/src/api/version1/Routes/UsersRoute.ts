@@ -9,7 +9,8 @@ import {
 
 const router = express.Router();
 
-//this route is used to create stores and handles uploads
+//image configurations and validations
+//storage for the images to be uploaded
 const storage = multer.memoryStorage();
 
 const fileFilter = (req: Request, file: any, cb: any) => {
@@ -31,10 +32,13 @@ const upload = multer({
 	limits: { fileSize: 1000000 },
 });
 
+//this route is used to get all images in the gallery
 router.get("/getAllImages", getAllImage);
 
+//this route is used to upload all images to the gallery
 router.post("/uploadNewImage", upload.single("image"), uploadNewImage);
 
+//this route is used to update all images in the gallery once edited
 router.put("/updateImage/:id", upload.single("image"), updateImageInfo);
 
 router.delete("deleteImage/:imageId", deletImage);
