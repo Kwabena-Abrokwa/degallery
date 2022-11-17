@@ -47,7 +47,7 @@ const DisplayImageDetails: React.FC<DisplayImageDetailsProps> = ({}) => {
 							src={`${API_URLS.image_URL}/${
 								globalStates.showImageDetails.image
 							}?timestamp=${new Date()}`}
-							className="w-full"
+							className="w-full max-h-[600px]"
 							crossOrigin={"anonymous"}
 						/>
 						<div className="w-11/12 mx-auto max-h-[100px]">

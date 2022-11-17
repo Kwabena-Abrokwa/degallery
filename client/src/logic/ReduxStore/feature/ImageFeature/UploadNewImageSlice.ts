@@ -5,6 +5,7 @@ type ImageDetails = {
 	imageName: string;
 	imageContent: string;
 	image: string;
+	imageId?: number;
 };
 
 type InitialState = {
@@ -18,6 +19,29 @@ const initialState: InitialState = {
 	message: "",
 	error: "",
 };
+
+export const updateImageMethod = createAsyncThunk(
+	"uploadNewImage/updateImageMethod",
+	async (datas: ImageDetails) => {
+		return await axios
+			.put(
+				`updateImage/${datas.imageId}`,
+				{
+					imageName: datas.imageName,
+					image: datas.image,
+					imageContent: datas.imageContent,
+				},
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			)
+			.then(({ data }) => {
+				return data;
+			});
+	}
+);
 
 export const uploadNewImageMethod = createAsyncThunk(
 	"uploadNewImage/uploadNewImageMethod",
@@ -50,6 +74,18 @@ const uploadNewImageSlice = createSlice({
 			state.loading = false;
 			state.error =
 				action.error.message || "Something happened whiles uploading image";
+		});
+		builder.addCase(updateImageMethod.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(updateImageMethod.fulfilled, (state, action) => {
+			state.loading = false;
+			state.message = action.payload.message;
+		});
+		builder.addCase(updateImageMethod.rejected, (state, action) => {
+			state.loading = false;
+			state.error =
+				action.error.message || "Something happened whiles updating image";
 		});
 	},
 });

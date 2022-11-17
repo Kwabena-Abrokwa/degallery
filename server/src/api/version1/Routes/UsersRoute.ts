@@ -3,6 +3,7 @@ import multer from "multer";
 import {
 	deletImage,
 	getAllImage,
+	updateImageInfo,
 	uploadNewImage,
 } from "../Controller/ImageController";
 
@@ -33,6 +34,8 @@ const upload = multer({
 router.get("/getAllImages", getAllImage);
 
 router.post("/uploadNewImage", upload.single("image"), uploadNewImage);
+
+router.put("/updateImage/:id", upload.single("image"), updateImageInfo);
 
 router.delete("deleteImage/:imageId", deletImage);
 

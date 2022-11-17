@@ -64,7 +64,7 @@ const Home: React.FC<HomeProps> = ({}) => {
 										<>
 											<ImageCardsComponents
 												image={`${API_URLS.image_URL}/${item.image}`}
-												key={n}
+												key={item.imageId}
 												imageId={item.imageId}
 												imageName={item.imageName}
 												handleShowImageControl={() => {

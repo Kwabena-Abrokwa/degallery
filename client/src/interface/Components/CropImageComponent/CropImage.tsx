@@ -5,11 +5,12 @@ import {
 	useAppDispatch,
 	useAppSelector,
 } from "../../../logic/ReduxStore/app/hooks";
-import getCroppedImg from "./CropImageMethods";
+import getCroppedImg from "./functions/CropImageMethods";
 import { API_URLS } from "../../../logic/API/axiosConfig";
-import Images from "../../Assets/LandingPageImages/mother-and-daughter-g6732029c7_1280.jpg";
 import { toggleDisplayCrop } from "../../../logic/ReduxStore/feature/GlobalStates/GlobalStateSlice";
-import axios from "axios";
+import { updateImageMethod } from "../../../logic/ReduxStore/feature/ImageFeature/UploadNewImageSlice";
+import CustomButtonSpinner from "../Customs/CustomButtonSpinner";
+import { fetchAllImagesMethod } from "../../../logic/ReduxStore/feature/ImageFeature/GetAllImagesUploadedSlices";
 
 interface CropImageProps {}
 
@@ -18,6 +19,7 @@ const CropImage: React.FC<CropImageProps> = ({}) => {
 	const [rotation, setRotation] = useState(0);
 	const [zoom, setZoom] = useState(1);
 	const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+	const uploadImageState = useAppSelector((state) => state.uploadImage);
 
 	const dispatch = useAppDispatch();
 
@@ -28,31 +30,24 @@ const CropImage: React.FC<CropImageProps> = ({}) => {
 	}, []);
 
 	const cropImage = async () => {
-		try {
-			await axios
-				.get(
-					encodeURI(
-						`${API_URLS.image_URL}/${globalStates.showImageDetails.image}`
-					)
-				)
-				.then(async (response) => {
-					console.log("====================================");
-					console.log(response);
-					console.log("====================================");
-					const { file, url } = await getCroppedImg(
-						Images,
-						croppedAreaPixels,
-						rotation
-					);
+		const { file, url } = await getCroppedImg(
+			`${API_URLS.image_URL}/${globalStates.showImageDetails.image}`,
+			croppedAreaPixels,
+			rotation
+		);
 
-					console.log("====================================");
-					console.log(url);
-					console.log("====================================");
-				});
-		} catch (error) {
-			console.log("====================================");
-			console.log(error);
-			console.log("====================================");
+		if (file) {
+			dispatch(
+				updateImageMethod({
+					image: file,
+					imageContent: globalStates.showImageDetails.imageContent,
+					imageName: globalStates.showImageDetails.imageName,
+					imageId: globalStates.showImageDetails.imageId,
+				})
+			).then(() => {
+				dispatch(fetchAllImagesMethod());
+				dispatch(toggleDisplayCrop(false));
+			});
 		}
 	};
 
@@ -131,7 +126,11 @@ const CropImage: React.FC<CropImageProps> = ({}) => {
 						className="w-[20%] shadow-md h-[50px] my-10 bg-white"
 						onClick={cropImage}
 					>
-						Save now
+						{uploadImageState.loading ? (
+							<CustomButtonSpinner />
+						) : (
+							"Save now"
+						)}
 					</button>
 				</div>
 			</>

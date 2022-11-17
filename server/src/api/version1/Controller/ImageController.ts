@@ -62,6 +62,49 @@ export const uploadNewImage = async (req: Request, res: Response) => {
 	}
 };
 
+export const updateImageInfo = async (req: Request, res: Response) => {
+	try {
+		const imageId = req.params.id;
+		const imageName = req.body.imageName;
+		const imageContent = req.body.imageContent;
+		const { error } = uploadImageValidation(req.body);
+		if (error)
+			return res.status(401).json({ message: error.details[0].message });
+
+		const file = req.file;
+
+		let imageUploadedToAWS = "";
+
+		if (file) {
+			imageUploadedToAWS = await s3BucketUploads(file);
+		}
+
+		const findImageById = await ImageModel.findOneAndUpdate(
+			{
+				imageId,
+			},
+			{
+				imageName,
+				imageContent,
+				image: imageUploadedToAWS,
+			}
+		);
+
+		if (findImageById) {
+			return res
+				.status(200)
+				.json({ status: true, message: "New photo added to your gallery" });
+		}
+	} catch (error) {
+		console.log("====================================");
+		console.log(error);
+		console.log("====================================");
+		return res
+			.status(401)
+			.json({ status: false, message: "Something went wrong" });
+	}
+};
+
 export const deletImage = async (req: Request, res: Response) => {
 	try {
 		const imageId = req.params.imageId;
